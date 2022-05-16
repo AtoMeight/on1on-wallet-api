@@ -45,7 +45,7 @@ e.g.
 RequestBody={
   "user_id": 123
 }
-TS=1652622423
+TS=1652683011792
 SecretKey = abc
 HMAC_SHA256(str(RequestBody) + str(timestamp_ms), SecretKey)=
 HMAC_SHA256({"user_id": 123}1652683011792, abc)=
