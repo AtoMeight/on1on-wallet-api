@@ -87,7 +87,7 @@ Update customer's metadata.
 Other fields cannot be updated.
 
 ```text
-PATCH /customer/{identifier}
+PATCH /customer/{identifier}/info
 ```
 
 | Field       | Description                                | Type   | Length | SampleValue         |
