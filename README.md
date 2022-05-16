@@ -30,12 +30,12 @@ Header: ow-idempotency-key={your idempotency key}
 
 ## Basic Request
 
-In order to prevent replay attacks and sniffing attacks, we need to sign and verify the request body.
+In order to prevent replay attacks and sniffing attacks, it is required to sign the request body.
 
 ```text
-Header: ow-signature={timestamp_second}-{signature}
+Header: ow-signature={timestamp_ms}-{signature}
 
-timestamp_second = unix timestamp of milliseconds, e.g. 1652683011792
+timestamp_ms = unix timestamp of milliseconds, e.g. 1652683011792
 signature = HMAC_SHA256(str(RequestBody) + str(timestamp_second), SecretKey).
 ```
 
@@ -47,16 +47,16 @@ RequestBody={
 }
 TS=1652622423
 SecretKey = abc
-HMAC_SHA256(str(RequestBody) + str(timestamp_second), SecretKey)=
+HMAC_SHA256(str(RequestBody) + str(timestamp_ms), SecretKey)=
 HMAC_SHA256({"user_id": 123}1652683011792, abc)=
-48ba83ce2676f123e3db6c03fe2174bd96c4f058ceb68e23b2fb6523f1afa164
+3dc73387afeb640c88a992973ee79756c2aa24df515db49c644170322ffba522
 ```
 
 Request will expire in 5 minutes. Please make sure your machine has the correct time.
 
 ## Create Customer
 
-To create a customer in On1on1 Wallet.
+To create a customer in On1on Wallet.
 Idempotency: If the user's email already exists and matching the customer_id, fulfill silently.
 
 ```text
@@ -97,7 +97,7 @@ PATCH /customer/{identifier}
 # Create Transfer (Synchronized)
 
 Transfer assets from one account to another.
-Both account should be existing in On1on Wallet
+Both account should be existing in On1on Wallet.
 
 ```text
 POST /transfer
