@@ -197,7 +197,7 @@ Response Data Fields
 
 struct Balance
 
-| Field    | Description              | Type   | Length | SampleValue  |
-|----------|--------------------------|--------|--------|--------------|
-| currency | Token identifier         | String | <255   | GOLDEN       |
-| amount   | Token amount to transfer | String | <64    | "123.456789" |
+| Field    | Description             | Type   | Length | SampleValue  |
+|----------|-------------------------|--------|--------|--------------|
+| currency | Token identifier        | String | <255   | GOLDEN       |
+| amount   | Token amount of balance | String | <64    | "123.456789" |
