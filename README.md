@@ -57,7 +57,7 @@ Idempotency: If the user's email already exists and matching the customer_id, fu
 POST /customer
 ```
 
-| Field       | Description                                | Type   | Length | SampleValue         |
+| Field       | Description                                | Type   | Length | Sample Value        |
 |-------------|--------------------------------------------|--------|--------|---------------------|
 | email       | user email                                 | String | <255   | sample@test.com     |
 | customer_id | Customer Id in your system, must be unique | String | <255   | User-00001          |
@@ -71,9 +71,9 @@ Get customer by email or by customer_id
 GET /customer/{identifier}/info
 ```
 
-| Field       | Description                                | Type   | Length | SampleValue         |
-|-------------|--------------------------------------------|--------|--------|---------------------|
-| identifier  | user email or customer_id                  | String | <255   | sample@test.com     |
+| Field      | Description               | Type   | Length | Sample Value    |
+|------------|---------------------------|--------|--------|-----------------|
+| identifier | user email or customer_id | String | <255   | sample@test.com |
 
 # Update Customer
 
@@ -84,9 +84,9 @@ Other fields cannot be updated.
 PATCH /customer/{identifier}/info
 ```
 
-| Field       | Description                                | Type   | Length | SampleValue         |
-|-------------|--------------------------------------------|--------|--------|---------------------|
-| metadata    | Anything you want to store in our database | String | <2048  | {"data":"anything"} |
+| Field    | Description                                | Type   | Length | Sample Value        |
+|----------|--------------------------------------------|--------|--------|---------------------|
+| metadata | Anything you want to store in our database | String | <2048  | {"data":"anything"} |
 
 # Create Transfer (Synchronized)
 
@@ -97,7 +97,7 @@ Both account should be existing in On1on Wallet.
 POST /transfer
 ```
 
-| Field       | Description                                                                     | Type   | Length | SampleValue         |
+| Field       | Description                                                                     | Type   | Length | Sample Value        |
 |-------------|---------------------------------------------------------------------------------|--------|--------|---------------------|
 | source      | User identity for source, either email or customer_id                           | String | <255   | sample@test.com     |
 | destination | User identity for destination, either email or customer_id                      | String | <255   | sample@test.com     |
@@ -109,7 +109,7 @@ POST /transfer
 
 Response Data Fields
 
-| Field         | Description                                              | Type   | Length | SampleValue            |
+| Field         | Description                                              | Type   | Length | Sample Value           |
 |---------------|----------------------------------------------------------|--------|--------|------------------------|
 | tx_id         | Transaction unique Id                                    | String | <=18   | OW262382364717125      |
 | status        | Transfer status, pending, done, failed                   | String | <16    | done                   |
@@ -125,13 +125,13 @@ Get the detail information for a transfer event
 GET /transfer/{tx_identifier}
 ```
 
-| Field         | Description                                       | Type   | Length | SampleValue       |
+| Field         | Description                                       | Type   | Length | Sample Value      |
 |---------------|---------------------------------------------------|--------|--------|-------------------|
 | tx_identifier | Transaction identifier, either tx_id or reference | String | <255   | OW262382364717125 |
 
 Response Data Fields
 
-| Field         | Description                                                                     | Type   | Length | SampleValue            |
+| Field         | Description                                                                     | Type   | Length | Sample Value           |
 |---------------|---------------------------------------------------------------------------------|--------|--------|------------------------|
 | tx_id         | Transaction unique Id                                                           | String | <=18   | OW262382364717125      |
 | source        | User identity for source, either email or customer_id                           | String | <255   | sample@test.com        |
@@ -157,7 +157,7 @@ status={status}&start_time={start_time}&end_time={end_time}&order_by={order_by}&
 
 Query Parameters
 
-| Field           | Description                                                                                                                              | Type   | Length | SampleValue     |
+| Field           | Description                                                                                                                              | Type   | Length | Sample Value    |
 |-----------------|------------------------------------------------------------------------------------------------------------------------------------------|--------|--------|-----------------|
 | source          | User identity for source, either email or customer_id                                                                                    | String | <255   | sample@test.com |
 | destination     | User identity for destination, either email or customer_id                                                                               | String | <255   | sample@test.com |
@@ -179,19 +179,19 @@ Get balance of customer by email or by customer_id
 GET /customer/{identifier}/balance
 ```
 
-| Field       | Description                                | Type   | Length | SampleValue         |
-|-------------|--------------------------------------------|--------|--------|---------------------|
-| identifier  | user email or customer_id                  | String | <255   | sample@test.com     |
+| Field      | Description               | Type   | Length | Sample Value    |
+|------------|---------------------------|--------|--------|-----------------|
+| identifier | user email or customer_id | String | <255   | sample@test.com |
 
 Response Data Fields
 
-| Field | Description       | Type      | Length | SampleValue |
-|-------|-------------------|-----------|--------|-------------|
-| data  | Array of Balances | Balance[] | ---    | []          |
+| Field | Description       | Type      | Length | Sample Value |
+|-------|-------------------|-----------|--------|--------------|
+| data  | Array of Balances | Balance[] | ---    | []           |
 
 struct Balance
 
-| Field    | Description             | Type   | Length | SampleValue  |
+| Field    | Description             | Type   | Length | Sample Value |
 |----------|-------------------------|--------|--------|--------------|
 | currency | Token identifier        | String | <255   | GOLDEN       |
 | amount   | Token amount of balance | String | <64    | "123.456789" |
