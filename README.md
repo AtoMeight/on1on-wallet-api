@@ -1,11 +1,5 @@
 # On1on Wallet API
 
-## Base URL:
-
-https://sandbox-api.on1on-wallet.com/v1
-
-https://api.on1on-wallet.com/v1
-
 ## API Authentication
 
 ApiKey: pk_xxxxx
@@ -36,7 +30,7 @@ In order to prevent replay attacks and sniffing attacks, it is required to sign 
 Header: ow-signature={timestamp_ms}-{signature}
 
 timestamp_ms = unix timestamp of milliseconds, e.g. 1652683011792
-signature = HMAC_SHA256(str(RequestBody) + str(timestamp_second), SecretKey).
+signature = HMAC_SHA256(str(RequestBody) + str(timestamp_ms), SecretKey).
 ```
 
 e.g.
@@ -109,7 +103,7 @@ POST /transfer
 | destination | User identity for destination, either email or customer_id                      | String | <255   | sample@test.com     |
 | currency    | Token identifier                                                                | String | <255   | GOLDEN              |
 | amount      | Token amount to transfer                                                        | String | <64    | "123.456789"        |
-| reference   | A reference you can later use to identify this payment, such as an order number | String | <64    | "123.456789"        |
+| reference   | A reference you can later use to identify this payment, such as an order number | String | <64    | Tx00234             |
 | description | Description for this transfer                                                   | String | <128   | "airdrop"           |
 | metadata    | Anything you want to store in our database                                      | String | <128   | {"data":"anything"} |
 
@@ -144,7 +138,7 @@ Response Data Fields
 | destination   | User identity for destination, either email or customer_id                      | String | <255   | sample@test.com        |
 | currency      | Token identifier                                                                | String | <255   | GOLDEN                 |
 | amount        | Token amount to transfer                                                        | String | <64    | "123.456789"           |
-| reference     | A reference you can later use to identify this payment, such as an order number | String | <64    | "123.456789"           |
+| reference     | A reference you can later use to identify this payment, such as an order number | String | <64    | Tx00234                |
 | description   | Description for this transfer                                                   | String | <128   | "airdrop"              |
 | metadata      | Anything you want to store in our database                                      | String | <128   | {"data":"anything"}    |
 | status        | Transfer status, pending, done, failed                                          | String | <16    | done                   |
@@ -172,7 +166,7 @@ Query Parameters
 | status          | Transfer status, pending, done, failed                                                                                                   | String | <16    | done            |
 | start_time      | start request_time in ms                                                                                                                 | Int64  | 64bit  | 1652683011792   |
 | end_time        | request_time in ms                                                                                                                       | Int64  | 64bit  | 1652683011792   |
-| order_by        | request_time                                                                                                                             | Int64  | 64bit  | 1652683011792   |
+| order_by        | request_time                                                                                                                             | Int64  | 64bit  | request_time    |
 | order_direction | ASC, DESC                                                                                                                                | String | 64bit  | DESC            |
 | page            | Page starts from 1                                                                                                                       | Int    | 32bit  | 2               |
 | size            | Size, default to 10, max 100                                                                                                             | Int    | 32bit  | 50              |
